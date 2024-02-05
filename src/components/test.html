@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-for="button in buttonList">
+            <button @click="curListKey=button.keyName">{{button.label}}</button>
+        </div>
+        <div class="curContent">
+            <div v-for="item in contentList[curListKey]">
+                {{item.name}}
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+
+<script>
+    const { createApp, ref } = Vue
+
+    createApp({
+        setup() {
+            const message = ref('Hello vue!')
+            var curListKey = ref('list1')
+            var contentList = ref(
+                {
+                    list1:[
+                        {
+                            id:'11',
+                            name:"列表1内容"
+                        },
+                        {
+                            id:'22',
+                            name:"列表1内容"
+                        },
+                        {
+                            id:'33',
+                            name:"列表1内容"
+                        },
+                    ],
+                    list2:[
+                        {
+                            id:'11',
+                            name:"列表二内容"
+                        },
+                        {
+                            id:'22',
+                            name:"列表二内容"
+                        },{
+                            id:'33',
+                            name:"列表二内容"
+                        },
+                    ],
+                    list3:[
+                        {
+                            id:'11',
+                            name:"列表三内容"
+                        },
+                        {
+                            id:'22',
+                            name:"列表三内容"
+                        },
+                        {
+                            id:'33',
+                            name:"列表三内容"
+                        },
+                    ],
+                }
+            )
+            const buttonList = ref(
+                [
+                    {
+                        keyName:'list1',
+                        label:'列表1'
+                    },
+                    {
+                        keyName:'list2',
+                        label:'列表2'
+                    },
+                    {
+                        keyName:'list3',
+                        label:'列表3'
+                    }
+                ]
+            )
+            return {
+                buttonList,
+                contentList,
+                curListKey
+            }
+        }
+    }).mount('#app')
+</script>
+
+</html>
